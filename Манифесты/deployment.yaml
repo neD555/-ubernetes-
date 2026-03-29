@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-multitool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-multitool
+  template:
+    metadata:
+      labels:
+        app: nginx-multitool
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.25
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-page
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+
+        - name: multitool
+          image: wbitt/network-multitool:latest
+          command: ["/bin/sh", "-c", "sleep infinity"]
+
+      volumes:
+        - name: web-page
+          configMap:
+            name: nginx-web-page
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-multitool-svc
+spec:
+  selector:
+    app: nginx-multitool
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
