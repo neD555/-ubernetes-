@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-multitool-ingress-tls
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - myapp.example.com
+      secretName: myapp-tls
+  rules:
+    - host: myapp.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-multitool-svc
+                port:
+                  number: 80
