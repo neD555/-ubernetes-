@@ -59,6 +59,9 @@ ingress-tls.yaml
 curl -k
 
 ### Ответ.
+<img width="585" height="417" alt="дз2(1)" src="https://github.com/user-attachments/assets/3e749be3-dcb6-442d-90c1-2bad4f8aedca" />
+
+
 
 
 
