@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-web-page
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+      <meta charset="UTF-8">
+      <title>ConfigMap page</title>
+    </head>
+    <body>
+      <h1>Nginx работает</h1>
+      <p>Страница подключена через ConfigMap</p>
+    </body>
+    </html>
