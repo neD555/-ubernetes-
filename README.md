@@ -97,6 +97,28 @@ rolebinding-developer.yaml
 
 Скриншот проверки прав (kubectl get pods --as=developer).
 
+### Ответ.
+<img width="586" height="351" alt="дз3(1)" src="https://github.com/user-attachments/assets/5d1b5c69-587e-4de7-8003-23a078008a61" />
+
+Команды:
+
+openssl genrsa -out developer.key 2048
+
+openssl req -new -key developer.key -out developer.csr -subj "/CN=developer"
+
+openssl x509 -req -in developer.csr \
+ 
+  -CA /var/snap/microk8s/current/certs/ca.crt \
+ 
+  -CAkey /var/snap/microk8s/current/certs/ca.key \
+  
+  -CAcreateserial \
+ 
+  -out developer.crt \
+ 
+  -days 365
+
+
 
 
 
